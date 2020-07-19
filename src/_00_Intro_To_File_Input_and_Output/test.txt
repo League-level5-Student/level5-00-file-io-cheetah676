@@ -2,4 +2,5 @@ This is a test file.
 It contains multiple lines of text.
 File IO in Java is fun!
 Working with files is useful and easy.
-Add this pls
+Add this plsmesageaddmessage/nnow i make new lines
+ok now i do

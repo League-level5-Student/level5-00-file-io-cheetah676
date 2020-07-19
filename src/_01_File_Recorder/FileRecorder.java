@@ -11,7 +11,7 @@ public class FileRecorder {
 	try {
 		String i=JOptionPane.showInputDialog("Hi");
 		FileWriter fw = new FileWriter("src/_00_Intro_To_File_Input_and_Output/test.txt", true);
-		fw.write(i);
+		fw.write("\n" +i);
 			System.out.println(i);
 		fw.close();
 	} catch (IOException e) {
