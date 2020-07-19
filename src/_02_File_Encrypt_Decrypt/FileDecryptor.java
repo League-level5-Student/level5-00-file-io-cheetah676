@@ -57,7 +57,7 @@ public class FileDecryptor {
 			letterArray[25]='y';
 			letterArray[26]='z';
 			FileReader fR=new FileReader(("src/_02_File_Encrypt_Decrypt/Key.txt"));
-			
+			for(int i=0; i<  ; i++)
 			
 			fr.close();
 		} catch (FileNotFoundException e) {
