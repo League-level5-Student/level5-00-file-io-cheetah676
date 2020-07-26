@@ -3,10 +3,11 @@ package _02_File_Encrypt_Decrypt;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileDecryptor {
-	/*
+	static /*
 	 * Decryption is the process of taking encoded or encrypted text or other data
 	 * and converting it back into text that you or the computer can read and understand.
 	 *
@@ -24,6 +25,8 @@ public class FileDecryptor {
 	 * Create a program that opens the file created by FileEncryptor and decrypts
 	 * the message, then display it to the user in a JOptionPane.
 	 */
+	String encrypted="";
+	static String decryptedMessage="";
 	public static void main(String[]args) {
 		try {
 			FileReader fr = new FileReader(("src/_02_File_Encrypt_Decrypt/EncryptedFile.txt"));
@@ -56,11 +59,37 @@ public class FileDecryptor {
 			letterArray[24]='x';
 			letterArray[25]='y';
 			letterArray[26]='z';
-			FileReader fR=new FileReader(("src/_02_File_Encrypt_Decrypt/Key.txt"));
-			for(int i=0; i<  ; i++)
-			
+			FileReader kr=new FileReader(("src/_02_File_Encrypt_Decrypt/Key.txt"));
+			int k=kr.read();
+			int key=k-=48;
+			int c=fr.read();
+			while(c!=-1) {
+				//System.out.println((char)c);
+				encrypted+=(char)c;
+				System.out.println(encrypted);
+				c=fr.read();
+			}
+			for(int i=0; i<encrypted.length(); i++) {
+				for(int j=0; j<letterArray.length; j++) {
+					if(encrypted.charAt(i)==letterArray[j]) {
+						if(j-key<0) {
+							int extra=j-key+26;
+							System.out.println(key);
+							decryptedMessage+=letterArray[extra];
+						}
+						else {
+						decryptedMessage+=letterArray[j-key];
+						}
+						break;
+					}
+				}
+			}
 			fr.close();
-		} catch (FileNotFoundException e) {
+			FileWriter fw = new FileWriter("src/_02_File_Encrypt_Decrypt/DecryptedFile.txt");
+			fw.write("\n" +decryptedMessage);
+			System.out.println(decryptedMessage);
+			fw.close();
+			} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
