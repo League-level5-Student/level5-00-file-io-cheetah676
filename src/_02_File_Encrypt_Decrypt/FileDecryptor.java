@@ -97,4 +97,3 @@ public class FileDecryptor {
 			e.printStackTrace();
 		}
 	}
-}
