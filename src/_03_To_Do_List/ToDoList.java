@@ -137,4 +137,4 @@ tdl.run();
 			}
 		}
 	}
-}
+}//Copyright © 2020 Jake Mordan

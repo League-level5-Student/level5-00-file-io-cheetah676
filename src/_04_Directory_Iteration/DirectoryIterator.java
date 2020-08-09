@@ -1,6 +1,8 @@
 package _04_Directory_Iteration;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
@@ -10,18 +12,18 @@ public class DirectoryIterator {
 		 * The following is an example of how to list all of the files in a directory.
 		 * Once the program is running, the directory is chosen using the JFileChooser.
 		 */
-		JFileChooser jfc = new JFileChooser();
-		jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		int returnVal = jfc.showOpenDialog(null);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File directory = jfc.getSelectedFile();
-			File[] files = directory.listFiles();
-			if(files != null) {
-				for(File f : files) {
-				  System.out.println(f.getAbsolutePath());
-				}
-			}
-		}
+	//	JFileChooser jfc = new JFileChooser();
+	//	jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+	//	int returnVal = jfc.showOpenDialog(null);
+	//	if (returnVal == JFileChooser.APPROVE_OPTION) {
+	//		File directory = jfc.getSelectedFile();
+	//		File[] files = directory.listFiles();
+	//		if(files != null) {
+	//			for(File f : files) {
+	//			  System.out.println(f.getAbsolutePath());
+		//		}
+		//	}
+		//}
 		
 		/*
 		 * Your task is to write a program that iterates through the src folder of this current Java Project. 
@@ -29,5 +31,37 @@ public class DirectoryIterator {
 		 * Be aware of possible directories inside of directories.
 		 * (e.g //Copyright © 2019 FirstName LastName)
 		 */
+		String copyright="//Copyright © 2020 Jake Mordan";
+		JFileChooser JFC=new JFileChooser();
+		JFC.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		int openFileBrowser=JFC.showOpenDialog(null);
+		if(openFileBrowser==JFileChooser.APPROVE_OPTION) {
+			File directory=JFC.getSelectedFile();
+			File[] files=directory.listFiles();
+			if(files!=null) {
+				for(File f:files) {
+					System.out.println(f.getAbsolutePath());
+					File directory2=f.getAbsoluteFile();
+					File[] filesInPackages=directory2.listFiles();
+					if(filesInPackages!=null) {
+						for(File f1:filesInPackages) {
+							System.out.println(f1.getAbsolutePath());
+							if(f1.getAbsolutePath().contains(".java")) {
+								System.out.println(".java file");
+								try {
+									FileWriter fw = new FileWriter(f1.getAbsoluteFile(), true);
+									fw.write(copyright);
+									fw.close();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
+//Copyright © 2020 Jake Mordan

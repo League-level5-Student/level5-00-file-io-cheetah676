@@ -97,3 +97,4 @@ public class FileDecryptor {
 			e.printStackTrace();
 		}
 	}
+}//Copyright © 2020 Jake Mordan

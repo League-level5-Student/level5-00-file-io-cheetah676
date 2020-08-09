@@ -3,7 +3,7 @@ package _05_Serialization;
 /*
  * Complete this class so that it can be serialized.
  */
-public class SaveData {
+public class SaveData implements Serializable{
 	public final String name;
 	public final int age;
 
@@ -11,4 +11,4 @@ public class SaveData {
 		this.name = name;
 		this.age = age;
 	}
-}
+}//Copyright © 2020 Jake Mordan

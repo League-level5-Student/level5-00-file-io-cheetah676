@@ -87,4 +87,4 @@ public class FileEncryptor {
 		e.printStackTrace();
 	}
 }
-}
+}//Copyright © 2020 Jake Mordan
