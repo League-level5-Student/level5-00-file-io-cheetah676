@@ -23,12 +23,14 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 	private GridInputPanel gip;
 	private GridPanel gp;
 	private JButton saveButton;
+	private JButton loadButton;
 	ColorSelectionPanel csp;
 	
 	public void start() {
 		gip = new GridInputPanel(this);	
 		window = new JFrame("Pixel Art");
 		saveButton=new JButton("Save Button");
+		loadButton=new JButton("Load Button");
 		window.setLayout(new FlowLayout());
 		window.setResizable(false);
 		
@@ -43,6 +45,8 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 		csp = new ColorSelectionPanel();
 		csp.add(saveButton);
 		saveButton.addActionListener(this);
+		csp.add(loadButton);
+		loadButton.addActionListener(this);
 		window.remove(gip);
 		window.add(gp);
 		window.add(csp);
@@ -90,20 +94,13 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==saveButton) {
-			save(new GridPanel(GridPanel.windowWidth, GridPanel.windowHeight, GridPanel.rows, GridPanel.cols));
-			save(new Pixel(Pixel.x, Pixel.y));
+			save1(new GridPanel(GridPanel.windowWidth, GridPanel.windowHeight, GridPanel.rows, GridPanel.cols));
+		if(e.getSource()==loadButton) {
+			//put something here pls future self
+		}
 		}
 	}
-	private void save(Pixel pixel) {
-		// TODO Auto-generated method stub
-		try (FileOutputStream fos = new FileOutputStream(new File(DATA_FILE)); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-			oos.writeObject(pixel);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static void save(GridPanel gridPanel) {
+	private static void save1(GridPanel gridPanel) {
 		try (FileOutputStream fos = new FileOutputStream(new File(DATA_FILE)); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
 			oos.writeObject(gridPanel);
 		} catch (IOException e) {
@@ -111,7 +108,7 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 		}
 	}
 
-	private static GridPanel load() {
+	static GridPanel load1() {
 		try (FileInputStream fis = new FileInputStream(new File(DATA_FILE)); ObjectInputStream ois = new ObjectInputStream(fis)) {
 			return (GridPanel) ois.readObject();
 		} catch (IOException e) {
