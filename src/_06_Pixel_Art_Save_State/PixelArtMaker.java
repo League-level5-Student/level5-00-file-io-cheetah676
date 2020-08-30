@@ -1,5 +1,7 @@
 package _06_Pixel_Art_Save_State;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +20,7 @@ import javax.swing.JFrame;
 import _05_Serialization.SaveData;
 
 public class PixelArtMaker implements MouseListener, ActionListener{
-	private static final String DATA_FILE = "src/_06_Pixel_Art_Save_State/saved.dat.txt";
+	private static final String DATA_FILE = "src/_06_Pixel_Art_Save_State/saved.dat";
 	private JFrame window;
 	private GridInputPanel gip;
 	private GridPanel gp;
@@ -41,7 +43,8 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 	}
 
 	public void submitGridData(int w, int h, int r, int c) {
-		gp = new GridPanel(w, h, r, c);
+		//gp = new GridPanel(w, h, r, c);
+		gp=load1();
 		csp = new ColorSelectionPanel();
 		csp.add(saveButton);
 		saveButton.addActionListener(this);
@@ -94,10 +97,10 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==saveButton) {
-			save1(new GridPanel(GridPanel.windowWidth, GridPanel.windowHeight, GridPanel.rows, GridPanel.cols));
-		if(e.getSource()==loadButton) {
-			//put something here pls future self
+			save1(gp);
 		}
+		if(e.getSource()==loadButton) {
+			gp=load1();
 		}
 	}
 	private static void save1(GridPanel gridPanel) {

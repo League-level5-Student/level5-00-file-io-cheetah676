@@ -8,15 +8,13 @@ import java.io.Serializable;
 import javax.swing.JPanel;
 
 public class GridPanel extends JPanel implements Serializable{
-
-	final long serialVersionUID = 1L;
-	static int windowWidth;
-	static int windowHeight;
-	private int pixelWidth;
-	private int pixelHeight;
-	static int rows;
-	static int cols;
-	GridPanel gridPanelLoadVar=_06_Pixel_Art_Save_State.PixelArtMaker.load1();
+	private static final long serialVersionUID = 1L;
+	public int windowWidth;
+	public int windowHeight;
+	int pixelWidth;
+	int pixelHeight;
+	public int rows;
+	public int cols;
 	//1. Create a 2D array of pixels. Do not initialize it yet.
 	Pixel[][] array;
 	Color color;
@@ -44,7 +42,7 @@ public class GridPanel extends JPanel implements Serializable{
 		}
 		}
 	
-	
+
 	public void setColor(Color c) {
 		color = c;
 	}
@@ -72,28 +70,5 @@ public class GridPanel extends JPanel implements Serializable{
 			}
 		}
 	}
-	public void loadGridPanel(){
-		this.windowWidth = gridPanelLoadVar.windowWidth;
-		this.windowHeight = gridPanelLoadVar.windowHeight;
-		this.rows = gridPanelLoadVar.rows;
-		this.cols = gridPanelLoadVar.cols;
-		
-		this.pixelWidth = windowWidth / cols;
-		this.pixelHeight = windowHeight / rows;
-		
-		color = Color.BLACK;
-		
-		setPreferredSize(new Dimension(windowWidth, windowHeight));
-		
-		//2. Initialize the pixel array using the rows and cols variables.
-	array=new Pixel[rows][cols];
-		
-		//3. Iterate through the array and initialize each element to a new pixel.
-		for(int i=0; i<array.length; i++) {
-			for(int j=0; j<array[i].length; j++) {
-				array[i][j]=new Pixel(i, j);
-				array[i][j].color=(gridPanelLoadVar.array[i][j].color);
-			}
-		}
-	}
+
 }

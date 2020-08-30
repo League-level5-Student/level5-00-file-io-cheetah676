@@ -3,9 +3,10 @@ package _06_Pixel_Art_Save_State;
 import java.awt.Color;
 import java.io.Serializable;
 
-public class Pixel{
-	public static int x;
-	public static int y;
+public class Pixel implements Serializable{
+	private static final long serialVersionUID = 1L;
+	public int x;
+	public int y;
 	public Color color;
 	
 	public Pixel(int x, int y) {
