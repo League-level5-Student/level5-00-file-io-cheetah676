@@ -100,7 +100,20 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 			save1(gp);
 		}
 		if(e.getSource()==loadButton) {
+			window.remove(gp);
+			window.remove(csp);
 			gp=load1();
+			csp = new ColorSelectionPanel();
+			csp.add(saveButton);
+			saveButton.addActionListener(this);
+			csp.add(loadButton);
+			loadButton.addActionListener(this);
+			window.remove(gip);
+			window.add(gp);
+			window.add(csp);
+			gp.repaint();
+			gp.addMouseListener(this);
+			window.pack();
 		}
 	}
 	private static void save1(GridPanel gridPanel) {
